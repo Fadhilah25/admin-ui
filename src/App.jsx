@@ -3,34 +3,66 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-function App() {
-  const [count, setCount] = useState(0)
+
+function LoginForm() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    // Handle login functionality here
+    console.log('Email:', email, 'Password:', password);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="flex bg-white shadow-lg rounded-lg w-[900px] h-[400px]">
+        {/* Left Side (Image) */}
+        <div className="w-1/2 bg-gray-300 flex justify-center items-center">
+          <span className="text-xl text-gray-500">600 x 500</span>
+        </div>
+
+        {/* Right Side (Login Form) */}
+        <div className="w-1/2 p-8">
+          <h2 className="text-2xl font-semibold text-center mb-6">Simple Tailwind Form</h2>
+          <form onSubmit={handleLogin}>
+            <div className="mb-4">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                Email
+              </label>
+              <input
+                id="email"
+                type="email"
+                placeholder="Masukkan email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <div className="mb-6">
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                Password
+              </label>
+              <input
+                id="password"
+                type="password"
+                placeholder="Masukkan password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+            </div>
+            <button
+              type="submit"
+              className="w-full py-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-200"
+            >
+              Login
+            </button>
+          </form>
+        </div>
       </div>
-      <h1 className="bg-blue-200">Vite + React</h1>
-      <h3>Fadhilah Aditya Akbar</h3>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default LoginForm;
