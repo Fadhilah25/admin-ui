@@ -29,23 +29,21 @@ function App() {
               />
             </div>
             <div className="mb-6">
-              <div className="flex justify-between items-center mb-2">
-                <label htmlFor="password" className="block text-sm">
-                  Password
-                </label>
-                <a href="#" className="text-xs text-primary hover:underline">
-                  Forgot Password?
-                </a>
-              </div>
+              <label htmlFor="password" className="block text-sm mb-2">
+                Password
+                <a href="#" className="text-xs text-primary text-right float-right">
+                Forgot password?
+              </a>
+              </label>
               <input
                 type="password"
                 className="py-3 pl-4 text-sm rounded-md w-full bg-special-mainBg border border-gray-03 text-gray-01 focus:border-black focus:outline-none focus:ring-0"
-                placeholder="************"
+                placeholder=""
                 name="password"
                 id="password"
               />
             </div>
-            <div className="mb-6">
+            <div className="mb-6 flex items-center gap-2">
               <input
                 type="checkbox"
                 className="text-sm accent-primary"
@@ -126,7 +124,7 @@ function App() {
         </div>
         {/* sign in with google end */}
         {/* link start */}
-        <div className="flex justify-center mt-6">
+        <div className="flex justify-center">
           <a className="mt-6 text-primary text-sm font-bold">Create an account</a>
         </div>
         {/* link end */}
