@@ -1,14 +1,13 @@
-import React from 'react'
+import React from "react";
 import AuthLayout from "../components/Layouts/AuthLayout";
 import FormSignUp from "../components/Fragments/FormSignUp";
-
 
 function SignUp({ onToggle }) {
   return (
     <AuthLayout>
-        <FormSignUp />
+      <FormSignUp />
     </AuthLayout>
-    )
+  );
 }
 
-export default SignUp
+export default SignUp;
