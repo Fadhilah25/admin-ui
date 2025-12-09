@@ -1,12 +1,12 @@
 import React from 'react'
 import AuthLayout from "../components/Layouts/AuthLayout";
-import FormSignIn from "../components/Fragments/FormSigin";
+import FormSignIn from "../components/Fragments/FormSignIn";
 
 
-function SignIn({ onToggle }) {
+function SignUp({ onToggle }) {
   return (
     <AuthLayout>
-        <FormSignIn onToggle={onToggle} />
+        <FormSignIn />
     </AuthLayout>
     )
 }
