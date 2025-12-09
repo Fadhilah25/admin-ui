@@ -1,13 +1,14 @@
-import React from "react";
-import AuthLayout from "../components/Layouts/AuthLayout.jsx";
-import FormSignUp from "../components/Fragments/FormSignUp";
+import React from 'react'
+import AuthLayout from "../components/Layouts/AuthLayout";
+import FormSignup from "../components/Fragments/FormSingup";
 
-function signUp() {
+
+function SignUp({ onToggle }) {
   return (
     <AuthLayout>
-      <FormSignUp />
+        <FormSignup onToggle={onToggle} />
     </AuthLayout>
-  );
+    )
 }
 
-export default signUp;
+export default SignUp

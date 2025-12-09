@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 function Button(props) {
   const { children, type = "submit", variant = "primary" } = props;
@@ -7,18 +7,19 @@ function Button(props) {
   const variantClasses = {
     primary: "bg-primary text-white",
     secondary: "bg-gray-05 text-gray-02",
-  };
-  const finalClasses = `${baseClasses} ${
-    variantClasses[variant] || variantClasses.primary
-  }`;
+  }
+
+  const finalClasses = `${baseClasses} 
+  ${variantClasses[variant] || variantClasses.primary
+    }`;
 
   return (
     <>
-      <button className={finalClasses} type={type}>
-        {children}
-      </button>
+        <button className={finalClasses} type={type}>
+          {children}
+        </button>
     </>
-  );
+  )
 }
 
-export default Button;
+export default Button
