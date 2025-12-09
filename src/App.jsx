@@ -1,7 +1,7 @@
 import "./App.css";
-import SignInPage from "./Pages/signIn";
-import SignUpPage from "./Pages/signup";
-import ErrorPage from "./Pages/error";
+import SignInPage from "./pages/signIn";
+import SignUpPage from "./pages/signup";
+import ErrorPage from "./pages/error";
 import { createBrowserRouter, RouterProvider, Link } from "react-router-dom";
 
 function App() {
