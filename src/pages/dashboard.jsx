@@ -2,7 +2,7 @@ import React from "react";
 import MainLayout from "../components/Layouts/MainLayout";
 import Card from "../components/Elements/Card";
 
-function dashboard() {
+function Dashboard() {
   return (
     <>
       <MainLayout>
@@ -51,4 +51,4 @@ function dashboard() {
   );
 }
 
-export default dashboard;
+export default Dashboard;
