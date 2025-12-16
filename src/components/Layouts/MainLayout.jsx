@@ -25,8 +25,8 @@ function MainLayout(props) {
 
   return (
     <>
-      <div className="flex min h-screen">
-        <aside className="w-28 sm:w-64 bg-defaultBlack w-28 text-special-bg2 flex flex-col justify-between px-7 py-12">
+      <div className="flex min-h-screen">
+        <aside className="w-28 sm:w-64 bg-defaultBlack text-special-bg2 flex flex-col justify-between px-7 py-12 fixed h-screen">
           <div>
             <div>
               <div className="mb-10">
@@ -77,7 +77,7 @@ function MainLayout(props) {
             </div>
           </div>
         </aside>
-        <div className="bg-special-mainBg flex-1 flex flex-col">
+        <div className="bg-special-mainBg flex-1 flex flex-col ml-28 sm:ml-64">
           <header className="border border-b border-gray-05 px-6 py-7 flex justify-between items-center">
             <div className="flex items-center">
               <div className="font-bold text 2x1 me-6">Username</div>
