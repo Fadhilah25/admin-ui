@@ -25,8 +25,8 @@ function CardRecentTransaction(props) {
                       ? "px-4 font-bold text-primary border-b-4 border-primary"
                       : "px-4 font-bold text-gray-01"
                   }
-                  value={tab}
                   onClick={() => setActive(tab)}
+                  value={tab}
                 >
                   {tab}
                 </button>

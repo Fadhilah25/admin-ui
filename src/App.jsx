@@ -18,6 +18,10 @@ function App() {
       element: <SignInPage />,
     },
     {
+      path: "/signin",
+      element: <SignInPage />,
+    },
+    {
       path: "/register",
       element: <SignUpPage />,
     },
