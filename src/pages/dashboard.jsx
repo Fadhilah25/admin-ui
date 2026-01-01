@@ -25,7 +25,14 @@ function Dashboard() {
   const fetchGoals = async () => {
     try {
       const data = await goalService();
-      setGoalsData(data);
+      // Validate API response structure before setting state
+      if (
+        data &&
+        data.presentAmount !== undefined &&
+        data.targetAmount !== undefined
+      ) {
+        setGoalsData(data);
+      }
     } catch (err) {
       console.error("Gagal mengambil data goals:", err);
       if (err.status === 401 && logout) {

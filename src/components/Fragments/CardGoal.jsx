@@ -6,14 +6,18 @@ import CompositionExample from "../Elements/CompositionExample";
 function CardGoal(props) {
   const { data } = props;
 
-  // Handle undefined or empty data
-  if (!data || !data.presentAmount || !data.targetAmount) {
+  // Handle undefined or empty data (fallback to prevent errors)
+  if (
+    !data ||
+    data.presentAmount === undefined ||
+    data.targetAmount === undefined
+  ) {
     return (
       <Card
         title="Goals"
         desc={
           <div className="p-2 text-center text-gray-03">
-            Loading goals data...
+            No goals data available
           </div>
         }
       />
