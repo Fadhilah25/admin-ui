@@ -3,11 +3,14 @@ import Logo from "../Elements/Logo";
 import Input from "../Elements/Input";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import Icon from "../Elements/Icon";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { ThemeContext } from "../../context/themeContext";
+import { AuthContext } from "../../context/authContext";
 
 function MainLayout(props) {
   const { children } = props;
+  const { user, logout } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const menu = [
     { id: 1, name: "Overview", icon: <Icon.Overview />, link: "/" },
@@ -33,6 +36,11 @@ function MainLayout(props) {
   ];
 
   const { theme, setTheme } = useContext(ThemeContext);
+
+  const handleLogout = () => {
+    logout();
+    navigate("/signin");
+  };
 
   return (
     <>
@@ -64,36 +72,35 @@ function MainLayout(props) {
             </nav>
           </div>
           <div>
-            <div>
-              <NavLink
-                to="/signin"
-                className="flex bg-special-bg3 text-white px-4 py-3 rounded-md"
-              >
-                <div className="mx-auto sm:mx-0 text-primary">
-                  <Icon.Logout />
-                </div>
-                <div className="ms-3 hidden sm:block">Logout</div>
-              </NavLink>
-            </div>
-            <div className="border my-10 border-b-special-bg"></div>
-            <div>
+            <div className="mb-3">
               Themes
-              <div className="flex flex-col sm:flex-row gap-2 items-center">
+              <div className="flex flex-col sm:flex-row gap-2 items-center mt-2">
                 {themes.map((t) => (
                   <div
                     key={t.name}
-                    className={`${t.bgcolor} w-6 h-6 rounded-md cursor-pointer mb-2`}
+                    className={`${t.bgcolor} w-6 h-6 rounded-md cursor-pointer`}
                     onClick={() => setTheme(t)}
                   ></div>
                 ))}
               </div>
             </div>
-            <div className="border my-10 border-b-special-bg"></div>
+            <div>
+              <button
+                onClick={handleLogout}
+                className="flex bg-special-bg3 text-white px-4 py-3 rounded-md w-full cursor-pointer hover:bg-opacity-80"
+              >
+                <div className="mx-auto sm:mx-0 text-primary">
+                  <Icon.Logout />
+                </div>
+                <div className="ms-3 hidden sm:block">Logout</div>
+              </button>
+            </div>
+            <div className="border my-4 border-b-special-bg"></div>
             <div>
               <div className="flex justify-between items-center">
                 <div>Avatar</div>
                 <div className="hidden sm:block">
-                  Username
+                  {user?.name || "Username"}
                   <br />
                   View Profile
                 </div>
@@ -107,7 +114,9 @@ function MainLayout(props) {
         <div className="bg-special-mainBg flex-1 flex flex-col ml-28 sm:ml-64">
           <header className="border border-b border-gray-05 px-6 py-7 flex justify-between items-center">
             <div className="flex items-center">
-              <div className="font-bold text 2x1 me-6">Username</div>
+              <div className="font-bold text 2x1 me-6">
+                {user?.name || "Username"}
+              </div>
               <div className="text-gray-03 flex">
                 <Icon.ChevronRight size={20} />
                 <span>May 19, 2023</span>

@@ -1,6 +1,7 @@
 import React from "react";
 import LabeledInput from "../Elements/LabeledInput";
 import Button from "../Elements/Button";
+import { Link } from "react-router-dom";
 
 function FormSignUp() {
   return (
@@ -118,16 +119,9 @@ function FormSignUp() {
       <div className="flex justify-center">
         <p className="mt-6 text-sm text-gray-03">
           Already have an account?{" "}
-          <a 
-            href="/signin" 
-            onClick={(e) => {
-              e.preventDefault();
-              window.dispatchEvent(new CustomEvent('navigate', { detail: '/signin' }));
-            }}
-            className="text-primary font-bold cursor-pointer"
-          >
+          <Link to="/login" className="text-primary font-bold cursor-pointer">
             Sign in here
-          </a>
+          </Link>
         </p>
       </div>
       {/* link end */}

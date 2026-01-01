@@ -5,6 +5,21 @@ import CompositionExample from "../Elements/CompositionExample";
 
 function CardGoal(props) {
   const { data } = props;
+
+  // Handle undefined or empty data
+  if (!data || !data.presentAmount || !data.targetAmount) {
+    return (
+      <Card
+        title="Goals"
+        desc={
+          <div className="p-2 text-center text-gray-03">
+            Loading goals data...
+          </div>
+        }
+      />
+    );
+  }
+
   const chartValue = (data.presentAmount / data.targetAmount) * 100;
 
   return (
