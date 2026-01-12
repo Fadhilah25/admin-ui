@@ -3,39 +3,26 @@ import SignInPage from "./pages/signIn";
 import SignUpPage from "./pages/signUp";
 import ErrorPage from "./pages/error";
 import DashboardPage from "./pages/dashboard";
-import BalancePage from "./pages/balance";
+import BalancePage from "./pages/balance.jsx";
 import {
   createBrowserRouter,
-  Link,
-  RouterProvider,
   Navigate,
+  RouterProvider,
 } from "react-router-dom";
 import { useContext } from "react";
-import { AuthContext } from "./context/authContext";
-
-// Component untuk protect route yang memerlukan authentication
-const RequireAuth = ({ children }) => {
-  const { user } = useContext(AuthContext);
-
-  if (!user) {
-    return <Navigate to="/login" replace />;
-  }
-
-  return children;
-};
-
-// Component untuk redirect jika sudah login
-const NotRequireAuth = ({ children }) => {
-  const { user } = useContext(AuthContext);
-
-  if (user) {
-    return <Navigate to="/" replace />;
-  }
-
-  return children;
-};
+import { AuthContext } from "./context/authContext.jsx";
 
 function App() {
+  const { user } = useContext(AuthContext);
+
+  const RequireAuth = ({ children }) => {
+    return user ? children : <Navigate to="/login" />;
+  };
+
+  const NotRequireAuth = ({ children }) => {
+    return !user ? children : <Navigate to="/" />;
+  };
+
   const myRouter = createBrowserRouter([
     {
       path: "/",
@@ -48,14 +35,6 @@ function App() {
     },
     {
       path: "/login",
-      element: (
-        <NotRequireAuth>
-          <SignInPage />
-        </NotRequireAuth>
-      ),
-    },
-    {
-      path: "/signin",
       element: (
         <NotRequireAuth>
           <SignInPage />

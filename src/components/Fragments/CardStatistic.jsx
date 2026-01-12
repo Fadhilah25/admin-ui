@@ -7,7 +7,17 @@ function CardStatistic(props) {
 
   return (
     <>
-      <Card title="Statistics" desc={<BarsDataset dataset={data} />} />
+      <Card
+        title="Statistics"
+        desc={
+          <>
+            <select className="font-bold text-2xl ">
+              <option>Weekly Comparison</option>
+            </select>
+            <BarsDataset dataset={data} />
+          </>
+        }
+      />
     </>
   );
 }

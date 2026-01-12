@@ -1,32 +1,46 @@
-import { useContext } from "react";
 import { BarChart } from "@mui/x-charts/BarChart";
-import { ThemeContext } from "../../context/themeContext";
+import * as React from "react";
+import { ThemeContext } from "../../context/themeContext.jsx";
 
 const chartSetting = {
+  height: 300,
   yAxis: [
     {
-      label: "Amount",
-      width: 60,
+      disableTicks: true,
+      disableLine: true,
+      width: 50,
     },
   ],
-  height: 300,
+  grid: {
+    horizontal: true,
+  },
+  sx: {
+    ["& .MuiChartsAxis-left .MuiChartsAxis-tickLabel"]: {
+      fill: "#9F9F9F",
+    },
+    ["& .MuiChartsAxis-bottom .MuiChartsAxis-tickLabel"]: {
+      fill: "#9F9F9F",
+    },
+  },
 };
+
+export function valueFormatter(value) {
+  return `${value}mm`;
+}
 
 export default function BarsDataset(props) {
   const { dataset } = props;
-  const { theme: themeMode } = useContext(ThemeContext);
+  const { theme } = React.useContext(ThemeContext);
 
-  // Update series colors with current theme
-  const updatedSeries = dataset.series.map((serie, index) => ({
-    ...serie,
-    color: index === 1 ? themeMode.color : "#E8E8E8",
-  }));
+  const expensesSeries = dataset.series.map((item) =>
+    item.dataKey === "amountLastWeek" ? { ...item, color: theme.color } : item
+  );
 
   return (
     <BarChart
       dataset={dataset.data}
-      xAxis={[{ dataKey: dataset.dataKey }]}
-      series={updatedSeries}
+      xAxis={[{ dataKey: dataset.dataKey, categoryGapRatio: 0.5 }]}
+      series={expensesSeries}
       {...chartSetting}
     />
   );
