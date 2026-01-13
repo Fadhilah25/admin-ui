@@ -7,9 +7,12 @@ import { NavLink } from "react-router-dom";
 import { ThemeContext } from "../../context/themeContext.jsx";
 import { AuthContext } from "../../context/authContext.jsx";
 import { logoutService } from "../../services/authService.jsx";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 
 function MainLayout(props) {
   const { children } = props;
+  const [isLoggingOut, setIsLoggingOut] = useState(false);
 
   const themes = [
     { name: "theme-green", bgcolor: "bg-[#299D91]", color: "#299D91" },
@@ -41,6 +44,7 @@ function MainLayout(props) {
 
   const handleLogout = async () => {
     try {
+      setIsLoggingOut(true);
       await logoutService();
       logout();
     } catch (err) {
@@ -48,6 +52,8 @@ function MainLayout(props) {
       if (err.status === 401) {
         logout();
       }
+    } finally {
+      setIsLoggingOut(false);
     }
   };
 
@@ -135,6 +141,15 @@ function MainLayout(props) {
           <main className="flex-1 px-6 py-7">{children}</main>
         </div>
       </div>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={isLoggingOut}
+      >
+        <div className="flex flex-col items-center">
+          <CircularProgress color="inherit" size={50} />
+          <p className="mt-4">Logging Out...</p>
+        </div>
+      </Backdrop>
     </>
   );
 }
